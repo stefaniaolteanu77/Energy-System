@@ -1,0 +1,23 @@
+Starting audit...
+[ERROR] C:\Users\Stef\Desktop\TEMA-POO\Etapa2\.\src\input\DistributorData.java:27: Line is longer than 100 characters (found 135). [LineLength]
+[ERROR] C:\Users\Stef\Desktop\TEMA-POO\Etapa2\.\src\input\DistributorData.java:136:31: '+' should be on a new line. [OperatorWrap]
+[ERROR] C:\Users\Stef\Desktop\TEMA-POO\Etapa2\.\src\input\DistributorData.java:137:24: '+' should be on a new line. [OperatorWrap]
+[ERROR] C:\Users\Stef\Desktop\TEMA-POO\Etapa2\.\src\input\DistributorData.java:138:50: '+' should be on a new line. [OperatorWrap]
+[ERROR] C:\Users\Stef\Desktop\TEMA-POO\Etapa2\.\src\input\DistributorData.java:139:34: '+' should be on a new line. [OperatorWrap]
+[ERROR] C:\Users\Stef\Desktop\TEMA-POO\Etapa2\.\src\input\DistributorData.java:140:58: '+' should be on a new line. [OperatorWrap]
+[ERROR] C:\Users\Stef\Desktop\TEMA-POO\Etapa2\.\src\input\DistributorData.java:141:50: '+' should be on a new line. [OperatorWrap]
+[ERROR] C:\Users\Stef\Desktop\TEMA-POO\Etapa2\.\src\input\DistributorData.java:142:54: '+' should be on a new line. [OperatorWrap]
+[ERROR] C:\Users\Stef\Desktop\TEMA-POO\Etapa2\.\src\input\DistributorData.java:143:42: '+' should be on a new line. [OperatorWrap]
+[ERROR] C:\Users\Stef\Desktop\TEMA-POO\Etapa2\.\src\input\DistributorData.java:144:50: '+' should be on a new line. [OperatorWrap]
+[ERROR] C:\Users\Stef\Desktop\TEMA-POO\Etapa2\.\src\input\DistributorData.java:145:34: '+' should be on a new line. [OperatorWrap]
+[ERROR] C:\Users\Stef\Desktop\TEMA-POO\Etapa2\.\src\input\DistributorData.java:146:48: '+' should be on a new line. [OperatorWrap]
+[ERROR] C:\Users\Stef\Desktop\TEMA-POO\Etapa2\.\src\input\DistributorData.java:147:48: '+' should be on a new line. [OperatorWrap]
+[ERROR] C:\Users\Stef\Desktop\TEMA-POO\Etapa2\.\src\input\DistributorData.java:148:40: '+' should be on a new line. [OperatorWrap]
+[ERROR] C:\Users\Stef\Desktop\TEMA-POO\Etapa2\.\src\input\InputLoader.java:70:30: 'typecast' is not followed by whitespace. [WhitespaceAfter]
+[ERROR] C:\Users\Stef\Desktop\TEMA-POO\Etapa2\.\src\output\ContractData.java:45:28: '+' should be on a new line. [OperatorWrap]
+[ERROR] C:\Users\Stef\Desktop\TEMA-POO\Etapa2\.\src\output\ContractData.java:46:24: '+' should be on a new line. [OperatorWrap]
+[ERROR] C:\Users\Stef\Desktop\TEMA-POO\Etapa2\.\src\output\ContractData.java:47:32: '+' should be on a new line. [OperatorWrap]
+[ERROR] C:\Users\Stef\Desktop\TEMA-POO\Etapa2\.\src\output\ContractData.java:48:66: '+' should be on a new line. [OperatorWrap]
+[ERROR] C:\Users\Stef\Desktop\TEMA-POO\Etapa2\.\src\strategies\EnergyChoiceStrategyType.java:10:25: Variable 'label' must be private and have accessor methods. [VisibilityModifier]
+Audit done.
+Checkstyle ends with 20 errors.
