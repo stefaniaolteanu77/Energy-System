@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 public class PriceStrategy implements ProducerStrategy{
     @Override
     public List<ProducerData> chooseProducers(List<ProducerData> producers) {
-        return producers.stream().sorted(Comparator.comparing(ProducerData::getPriceKW).
-                thenComparing(ProducerData::getEnergyPerDistributor).
+        return producers.stream().sorted(Comparator.comparingDouble(ProducerData::getPriceKW).
+                thenComparing(ProducerData::getEnergyPerDistributor, Comparator.reverseOrder()).
                 thenComparing(ProducerData::getId)).collect(Collectors.toList());
 
     }

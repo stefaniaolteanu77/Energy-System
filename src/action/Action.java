@@ -3,14 +3,11 @@ package action;
 import input.ConsumerData;
 import input.DistributorData;
 import input.ProducerData;
-import strategies.ProducerStrategy;
-import strategies.StrategyFactory;
+import updates.DistributorChanges;
 import updates.UpdateData;
 import updates.MonthlyUpdate;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public final class Action {
@@ -42,13 +39,19 @@ public final class Action {
       // for the rounds of the game from 1 to numberOfTurns which have updates
       if (i != 0) {
         MonthlyUpdate.addNewConsumers(consumers, updates.get(i - 1).getNewConsumers());
-        MonthlyUpdate.changeCostDistributor(
-            distributors, updates.get(i - 1).getUpdatedDistributors());
+        MonthlyUpdate.changeCostDistributor(distributors,
+                updates.get(i - 1).getUpdatedDistributors());
       }
 
-      DistributorsActions.chooseProducers(distributors, producers);
+      if (i == 0) {
+        DistributorsActions.chooseProducers(distributors, producers, true);
+      }
 
       DistributorsActions.calculateProductionCost(distributors, producers);
+
+//      System.out.println(consumers);
+//      System.out.println(distributors);
+//      System.out.println(producers);
 
       DistributorsActions.calculateProfit(distributors);
 
@@ -66,6 +69,13 @@ public final class Action {
 
       DistributorsActions.calculateBudget(distributors, consumers);
 
+      Map<Integer, Integer> listOfChanges = DistributorsActions.setListOfChanges(producers);
+
+      if (i != 0) {
+        MonthlyUpdate.changeEnergyProducer(producers,
+                updates.get(i - 1).getUpdatedProducers());
+      }
+
       DistributorsActions.removeBankruptContracts(distributors, consumers);
 
       DistributorsActions.removeBankruptDistributors(distributors, bankruptDistributors);
@@ -74,6 +84,17 @@ public final class Action {
 
       ConsumersActions.removeBankruptConsumers(consumers, bankruptConsumers);
 
+
+      DistributorsActions.updateProducers(distributors, producers, listOfChanges);
+
+      if (i != 0) {
+        DistributorsActions.chooseProducers(distributors, producers);
+        DistributorsActions.setProducerMonthlyStat(producers, i);
+      }
+
+//      System.out.println();
+//      System.out.println(consumers);
+//      System.out.println(distributors);
 
     }
   }

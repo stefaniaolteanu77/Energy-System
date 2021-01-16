@@ -2,6 +2,7 @@ package updates;
 
 import input.ConsumerData;
 import input.DistributorData;
+import input.ProducerData;
 
 import java.util.List;
 
@@ -35,4 +36,16 @@ public final class MonthlyUpdate {
             }
         }
     }
+
+    public static void changeEnergyProducer(
+            final List<ProducerData> producers, final List<ProducerChanges> changes) {
+        for (ProducerChanges change : changes) {
+            for (ProducerData producer : producers) {
+                if (change.getId() == producer.getId()) {
+                    producer.setEnergyPerDistributor(change.getEnergyPerDistributor());
+                }
+            }
+        }
+    }
+
 }

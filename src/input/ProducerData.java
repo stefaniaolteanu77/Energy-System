@@ -1,5 +1,6 @@
 package input;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import output.MonthlyStats;
 
@@ -14,6 +15,7 @@ public class ProducerData implements Entity{
     private double priceKW;
     private int energyPerDistributor;
 
+    @JsonIgnore private List<Integer> distributors;
     private List<MonthlyStats> monthlyStats;
 
     public ProducerData(int id, String energyType, int maxDistributors, double priceKW, int energyPerDistributor) {
@@ -22,6 +24,7 @@ public class ProducerData implements Entity{
         this.maxDistributors = maxDistributors;
         this.priceKW = priceKW;
         this.energyPerDistributor = energyPerDistributor;
+        distributors = new ArrayList<>();
         monthlyStats = new ArrayList<>();
     }
 
@@ -73,6 +76,13 @@ public class ProducerData implements Entity{
         this.monthlyStats = monthlyStats;
     }
 
+    public List<Integer> getDistributors() {
+        return distributors;
+    }
+
+    public void setDistributors(List<Integer> distributors) {
+        this.distributors = distributors;
+    }
 
     @Override
     public String toString() {
@@ -82,6 +92,7 @@ public class ProducerData implements Entity{
                 ", maxDistributors=" + maxDistributors +
                 ", priceKW=" + priceKW +
                 ", energyPerDistributor=" + energyPerDistributor +
+                ", distributors=" + distributors +
                 ", monthlyStats=" + monthlyStats +
                 '}';
     }

@@ -17,8 +17,8 @@ public class GreenStrategy implements ProducerStrategy {
                 return 0;
             }
             return EnergyType.valueOf(p1.getEnergyType()).isRenewable() ? -1 : 1;
-        }).thenComparing(ProducerData::getPriceKW).
-                thenComparing(ProducerData::getEnergyPerDistributor).
+        }).thenComparingDouble(ProducerData::getPriceKW).
+                thenComparing(ProducerData::getEnergyPerDistributor, Comparator.reverseOrder()).
                 thenComparing(ProducerData::getId)).collect(Collectors.toList());
     }
 }

@@ -24,12 +24,12 @@ public final class DistributorData implements Entity, Change {
 
   private boolean isBankrupt;
   @JsonIgnore private boolean changeProducer;
-  private int productionCost;
+  @JsonIgnore private int productionCost;
   @JsonIgnore private int profit;
   private int contractPrice;
   @JsonIgnore private int expensesPrice;
   private List<ContractData> contracts;
-  private List<Integer> producers;
+  @JsonIgnore private List<Integer> producers;
 
   public DistributorData(int id, int contractLength, int budget, int infrastructureCost, int energyNeededKW, String producerStrategy) {
     this.id = id;
@@ -178,15 +178,20 @@ public final class DistributorData implements Entity, Change {
   }
 
   @Override
-  public void update(Map<Integer, Integer> listOfEnergy) {
+  public void update(Map<Integer, Integer> listOfEnergy, List<ProducerData> producers) {
     for (Map.Entry<Integer, Integer> entry : listOfEnergy.entrySet()) {
-      for (ContractData contract : contracts) {
-        if (entry.getKey() == contract.getId() &&
-                entry.getValue() != contract.getPrice()) {
-          changeProducer = true;
-          break;
+      for (Integer producerId : this.producers) {
+        if (entry.getKey() == producerId) {
+          for (ProducerData producer : producers) {
+            if (producerId == producer.getId() &&
+                    entry.getValue() != producer.getEnergyPerDistributor()) {
+              changeProducer = true;
+              break;
+            }
+          }
         }
       }
     }
   }
+
 }

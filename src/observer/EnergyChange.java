@@ -1,5 +1,7 @@
 package observer;
 
+import input.ProducerData;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,10 +18,11 @@ public class EnergyChange {
         this.changes.remove(change);
     }
 
-    public void set(final Map<Integer, Integer> listOfEnergy) {
+    public void set(final Map<Integer, Integer> listOfEnergy,
+                    List<ProducerData> producers) {
         this.listOfEnergy = listOfEnergy;
         for (Change change : changes) {
-            change.update(listOfEnergy);
+            change.update(listOfEnergy, producers);
         }
     }
 }

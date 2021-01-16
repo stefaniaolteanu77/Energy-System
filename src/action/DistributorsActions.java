@@ -3,13 +3,17 @@ package action;
 import input.ConsumerData;
 import input.DistributorData;
 import input.ProducerData;
+import observer.EnergyChange;
 import output.Constants;
 import output.ContractData;
+import output.MonthlyStats;
 import strategies.ProducerStrategy;
 import strategies.StrategyFactory;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public final class DistributorsActions {
   private DistributorsActions() {
@@ -177,24 +181,99 @@ public final class DistributorsActions {
       }
     }
   }
+
+  public static void chooseProducers(final List<DistributorData> distributors,
+                                     final List<ProducerData> producers,
+                                     boolean firstTurn) {
+    StrategyFactory factory = StrategyFactory.getInstance();
+    for (DistributorData distributor : distributors) {
+        if (firstTurn) {
+
+          ProducerStrategy strategy = factory.getStrategy(distributor.getProducerStrategy());
+          List<ProducerData> sortedProducers = strategy.chooseProducers(producers);
+
+          int i = 0;
+          List<Integer> producersOfDistributors = distributor.getProducers();
+          int neededEnergy = distributor.getEnergyNeededKW();
+
+          while (neededEnergy > 0) {
+            int distributorEnergy = sortedProducers.get(i).getEnergyPerDistributor();
+
+            ProducerData producer = sortedProducers.get(i);
+            producersOfDistributors.add(producer.getId());
+            distributor.setProducers(producersOfDistributors);
+
+            List<Integer> distributorsOfProducer = producer.getDistributors();
+            distributorsOfProducer.add(distributor.getId());
+            producer.setDistributors(distributorsOfProducer);
+
+            neededEnergy -= distributorEnergy;
+            i++;
+          }
+        }
+      }
+  }
+
   public static void chooseProducers(final List<DistributorData> distributors,
                                      final List<ProducerData> producers) {
     StrategyFactory factory = StrategyFactory.getInstance();
     for (DistributorData distributor : distributors) {
-      ProducerStrategy strategy = factory.getStrategy(distributor.getProducerStrategy());
-      List<ProducerData> sortedProducers = strategy.chooseProducers(producers);
+      if (distributor.isChangeProducer()) {
 
-//      int i = 0;
-//      List <Integer> prod = distributor.getProducers();
-//      int neededEnergy = distributor.getEnergyNeededKW();
-//      while (neededEnergy > 0) {
-//        int distributorEnergy = sortedProducers.get(i).getEnergyPerDistributor();
-//        int distributorId = sortedProducers.get(i).getId();
-//        prod.add(distributorId);
-//        distributor.setProducers(prod);
-//        neededEnergy -= distributorEnergy;
-     // }
+        List<Integer> producersOfDistributors = distributor.getProducers();
+        for(Integer producerOfDistributor : producersOfDistributors) {
+          for (ProducerData producer : producers) {
+            if (producer.getId() == producerOfDistributor) {
+              producer.getDistributors().remove(Integer.valueOf(distributor.getId()));
+            }
+          }
+        }
+        producersOfDistributors.clear();
+
+        ProducerStrategy strategy = factory.getStrategy(distributor.getProducerStrategy());
+        List<ProducerData> sortedProducers = strategy.chooseProducers(producers);
+
+        int i = 0;
+        int neededEnergy = distributor.getEnergyNeededKW();
+
+        while (neededEnergy > 0) {
+          int distributorEnergy = sortedProducers.get(i).getEnergyPerDistributor();
+          ProducerData producer = sortedProducers.get(i);
+          producersOfDistributors.add(producer.getId());
+
+          List<Integer> distributorsOfProducer = producer.getDistributors();
+          distributorsOfProducer.add(distributor.getId());
+
+          neededEnergy -= distributorEnergy;
+          i++;
+        }
+      }
     }
+  }
+
+  public static void setProducerMonthlyStat(final List<ProducerData> producers, int month) {
+    for (ProducerData producer : producers) {
+      List<Integer> distributors = new ArrayList<>(producer.getDistributors());
+      MonthlyStats monthlyStats = new MonthlyStats(month, distributors);
+      producer.getMonthlyStats().add(monthlyStats);
+    }
+
+  }
+  public static Map<Integer, Integer> setListOfChanges(final List<ProducerData> producers) {
+    Map<Integer, Integer> listOfChanges = new LinkedHashMap<>();
+    for (ProducerData producer : producers) {
+      listOfChanges.put(producer.getId(), producer.getEnergyPerDistributor());
+    }
+    return listOfChanges;
+  }
+  public static void updateProducers(final List<DistributorData> distributors,
+                                             final List<ProducerData> producers,
+                                     Map<Integer, Integer> listOfChanges) {
+    EnergyChange energyChange = new EnergyChange();
+    for (DistributorData distributor : distributors) {
+      energyChange.addObserver(distributor);
+    }
+    energyChange.set(listOfChanges, producers);
   }
 
   public static void calculateProductionCost(final List<DistributorData> distributors,
