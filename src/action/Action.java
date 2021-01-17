@@ -7,6 +7,7 @@ import updates.DistributorChanges;
 import updates.UpdateData;
 import updates.MonthlyUpdate;
 
+import javax.sound.midi.Soundbank;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -45,10 +46,10 @@ public final class Action {
 
       if (i == 0) {
         DistributorsActions.chooseProducers(distributors, producers, true);
+        DistributorsActions.calculateProductionCost(distributors, producers);
       }
 
-      DistributorsActions.calculateProductionCost(distributors, producers);
-
+//      System.out.println("---------- "+ i + " ----------");
 //      System.out.println(consumers);
 //      System.out.println(distributors);
 //      System.out.println(producers);
@@ -85,16 +86,20 @@ public final class Action {
       ConsumersActions.removeBankruptConsumers(consumers, bankruptConsumers);
 
 
-      DistributorsActions.updateProducers(distributors, producers, listOfChanges);
+
 
       if (i != 0) {
+        DistributorsActions.updateProducers(distributors, producers, listOfChanges);
         DistributorsActions.chooseProducers(distributors, producers);
+        DistributorsActions.calculateProductionCost(distributors, producers);
         DistributorsActions.setProducerMonthlyStat(producers, i);
-      }
 
+      }
+//
 //      System.out.println();
 //      System.out.println(consumers);
 //      System.out.println(distributors);
+//      System.out.println(producers);
 
     }
   }

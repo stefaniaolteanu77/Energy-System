@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public final class DistributorsActions {
   private DistributorsActions() {
@@ -200,6 +201,12 @@ public final class DistributorsActions {
             int distributorEnergy = sortedProducers.get(i).getEnergyPerDistributor();
 
             ProducerData producer = sortedProducers.get(i);
+
+            if (producer.getMaxDistributors() == producer.getDistributors().size()) {
+              i++;
+              continue;
+            }
+
             producersOfDistributors.add(producer.getId());
             distributor.setProducers(producersOfDistributors);
 
@@ -239,6 +246,10 @@ public final class DistributorsActions {
         while (neededEnergy > 0) {
           int distributorEnergy = sortedProducers.get(i).getEnergyPerDistributor();
           ProducerData producer = sortedProducers.get(i);
+          if (producer.getMaxDistributors() == producer.getDistributors().size()) {
+            i++;
+            continue;
+          }
           producersOfDistributors.add(producer.getId());
 
           List<Integer> distributorsOfProducer = producer.getDistributors();
@@ -247,6 +258,7 @@ public final class DistributorsActions {
           neededEnergy -= distributorEnergy;
           i++;
         }
+
       }
     }
   }
@@ -254,7 +266,8 @@ public final class DistributorsActions {
   public static void setProducerMonthlyStat(final List<ProducerData> producers, int month) {
     for (ProducerData producer : producers) {
       List<Integer> distributors = new ArrayList<>(producer.getDistributors());
-      MonthlyStats monthlyStats = new MonthlyStats(month, distributors);
+      List<Integer> sortedDistributors = distributors.stream().sorted().collect(Collectors.toList());
+      MonthlyStats monthlyStats = new MonthlyStats(month, sortedDistributors);
       producer.getMonthlyStats().add(monthlyStats);
     }
 
@@ -278,8 +291,8 @@ public final class DistributorsActions {
 
   public static void calculateProductionCost(final List<DistributorData> distributors,
                                              final List<ProducerData> producers) {
-    int cost = 0;
     for (DistributorData distributor : distributors) {
+      int cost = 0;
       for (Integer contractWithProducer : distributor.getProducers()) {
         for (ProducerData producer : producers) {
           if (contractWithProducer == producer.getId()) {
