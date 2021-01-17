@@ -103,7 +103,7 @@
   }, {
     "id" : 4,
     "energyNeededKW" : 2266,
-    "contractCost" : 107,
+    "contractCost" : 93,
     "budget" : 269,
     "producerStrategy" : "QUANTITY",
     "isBankrupt" : false,
@@ -111,7 +111,7 @@
   }, {
     "id" : 5,
     "energyNeededKW" : 1253,
-    "contractCost" : 101,
+    "contractCost" : 17,
     "budget" : 1541,
     "producerStrategy" : "QUANTITY",
     "isBankrupt" : false,
@@ -135,7 +135,7 @@
   }, {
     "id" : 8,
     "energyNeededKW" : 1442,
-    "contractCost" : 100,
+    "contractCost" : 114,
     "budget" : 1033,
     "producerStrategy" : "QUANTITY",
     "isBankrupt" : false,
@@ -291,7 +291,7 @@
   }, {
     "id" : 19,
     "energyNeededKW" : 3828,
-    "contractCost" : 25,
+    "contractCost" : 96,
     "budget" : 1058,
     "producerStrategy" : "QUANTITY",
     "isBankrupt" : false,
@@ -329,40 +329,40 @@
       "distributorsIds" : [ 0, 2, 3, 5, 14, 15, 16, 17, 18 ]
     }, {
       "month" : 9,
-      "distributorsIds" : [ 0, 2, 3, 14, 15, 16, 17, 18 ]
+      "distributorsIds" : [ 0, 2, 3, 5, 14, 15, 16, 17, 18 ]
     }, {
       "month" : 10,
-      "distributorsIds" : [ 0, 2, 3, 14, 15, 16, 17, 18 ]
+      "distributorsIds" : [ 0, 2, 3, 5, 14, 15, 16, 17, 18 ]
     }, {
       "month" : 11,
-      "distributorsIds" : [ 15, 16 ]
+      "distributorsIds" : [ 5, 15, 16, 18 ]
     }, {
       "month" : 12,
-      "distributorsIds" : [ 15, 16 ]
+      "distributorsIds" : [ 5, 15, 16, 18 ]
     }, {
       "month" : 13,
-      "distributorsIds" : [ 4, 5, 15, 16 ]
+      "distributorsIds" : [ 5, 15, 16, 19 ]
     }, {
       "month" : 14,
-      "distributorsIds" : [ 4, 5, 15, 16 ]
+      "distributorsIds" : [ 5, 15, 16, 19 ]
     }, {
       "month" : 15,
-      "distributorsIds" : [ 4, 5, 15, 16 ]
+      "distributorsIds" : [ 5, 15, 16, 19 ]
     }, {
       "month" : 16,
-      "distributorsIds" : [ 12, 14, 15, 16 ]
+      "distributorsIds" : [ 5, 12, 14, 15, 16 ]
     }, {
       "month" : 17,
-      "distributorsIds" : [ 12, 14, 15, 16 ]
+      "distributorsIds" : [ 5, 12, 14, 15, 16 ]
     }, {
       "month" : 18,
-      "distributorsIds" : [ 13, 15, 16, 18, 19 ]
+      "distributorsIds" : [ 5, 13, 15, 16, 18 ]
     }, {
       "month" : 19,
-      "distributorsIds" : [ 13, 15, 16, 18, 19 ]
+      "distributorsIds" : [ 5, 13, 15, 16, 18 ]
     }, {
       "month" : 20,
-      "distributorsIds" : [ 15, 16, 19 ]
+      "distributorsIds" : [ 5, 13, 15, 16, 18 ]
     } ]
   }, {
     "id" : 1,
@@ -402,34 +402,34 @@
       "distributorsIds" : [ 13, 14, 16, 17 ]
     }, {
       "month" : 11,
-      "distributorsIds" : [ 13, 16, 18, 19 ]
+      "distributorsIds" : [ 13, 16 ]
     }, {
       "month" : 12,
-      "distributorsIds" : [ 13, 16, 18, 19 ]
+      "distributorsIds" : [ 13, 16 ]
     }, {
       "month" : 13,
-      "distributorsIds" : [ 13, 16, 18, 19 ]
+      "distributorsIds" : [ 4, 13, 16, 18 ]
     }, {
       "month" : 14,
-      "distributorsIds" : [ 13, 16, 18, 19 ]
+      "distributorsIds" : [ 4, 13, 16, 18 ]
     }, {
       "month" : 15,
-      "distributorsIds" : [ 13, 16, 18, 19 ]
+      "distributorsIds" : [ 4, 13, 16, 18 ]
     }, {
       "month" : 16,
-      "distributorsIds" : [ 13, 16, 18, 19 ]
+      "distributorsIds" : [ 4, 13, 16, 18 ]
     }, {
       "month" : 17,
-      "distributorsIds" : [ 13, 16, 18, 19 ]
+      "distributorsIds" : [ 4, 13, 16, 18 ]
     }, {
       "month" : 18,
-      "distributorsIds" : [ 13, 16, 18, 19 ]
+      "distributorsIds" : [ 13, 16, 18 ]
     }, {
       "month" : 19,
-      "distributorsIds" : [ 13, 16, 18, 19 ]
+      "distributorsIds" : [ 13, 16, 18 ]
     }, {
       "month" : 20,
-      "distributorsIds" : [ 16, 19 ]
+      "distributorsIds" : [ 13, 16, 18 ]
     } ]
   }, {
     "id" : 2,
@@ -530,40 +530,40 @@
       "distributorsIds" : [ 4, 18, 19 ]
     }, {
       "month" : 9,
-      "distributorsIds" : [ 4, 5, 18, 19 ]
+      "distributorsIds" : [ 4, 18, 19 ]
     }, {
       "month" : 10,
-      "distributorsIds" : [ 4, 5, 18, 19 ]
+      "distributorsIds" : [ 4, 18, 19 ]
     }, {
       "month" : 11,
-      "distributorsIds" : [ 4, 5 ]
+      "distributorsIds" : [ 4, 18, 19 ]
     }, {
       "month" : 12,
-      "distributorsIds" : [ 4, 5 ]
+      "distributorsIds" : [ 4, 18, 19 ]
     }, {
       "month" : 13,
-      "distributorsIds" : [ ]
+      "distributorsIds" : [ 19 ]
     }, {
       "month" : 14,
-      "distributorsIds" : [ ]
+      "distributorsIds" : [ 19 ]
     }, {
       "month" : 15,
-      "distributorsIds" : [ ]
+      "distributorsIds" : [ 19 ]
     }, {
       "month" : 16,
-      "distributorsIds" : [ 4, 5, 6, 7 ]
+      "distributorsIds" : [ 6, 7, 8, 19 ]
     }, {
       "month" : 17,
-      "distributorsIds" : [ 4, 5, 6, 7 ]
+      "distributorsIds" : [ 6, 7, 8, 19 ]
     }, {
       "month" : 18,
-      "distributorsIds" : [ 4, 5, 6, 7 ]
+      "distributorsIds" : [ 6, 7, 8, 19 ]
     }, {
       "month" : 19,
-      "distributorsIds" : [ 4, 5, 6, 7 ]
+      "distributorsIds" : [ 6, 7, 8, 19 ]
     }, {
       "month" : 20,
-      "distributorsIds" : [ 6, 7, 13, 18 ]
+      "distributorsIds" : [ 6, 7, 8, 19 ]
     } ]
   }, {
     "id" : 4,
@@ -618,19 +618,19 @@
       "distributorsIds" : [ 6, 7, 8, 11, 12, 14, 17 ]
     }, {
       "month" : 16,
-      "distributorsIds" : [ 8, 11, 12, 14, 17 ]
+      "distributorsIds" : [ 11, 12, 14, 17 ]
     }, {
       "month" : 17,
-      "distributorsIds" : [ 8, 11, 12, 14, 17 ]
+      "distributorsIds" : [ 11, 12, 14, 17 ]
     }, {
       "month" : 18,
-      "distributorsIds" : [ 2, 3, 8, 11, 12, 14, 17 ]
+      "distributorsIds" : [ 2, 3, 4, 11, 12, 14, 17 ]
     }, {
       "month" : 19,
-      "distributorsIds" : [ 2, 3, 8, 11, 12, 14, 17 ]
+      "distributorsIds" : [ 2, 3, 4, 11, 12, 14, 17 ]
     }, {
       "month" : 20,
-      "distributorsIds" : [ 4, 5, 8, 11, 12, 14, 17 ]
+      "distributorsIds" : [ 4, 11, 12, 14, 17 ]
     } ]
   } ]
 }

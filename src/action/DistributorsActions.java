@@ -258,7 +258,7 @@ public final class DistributorsActions {
           neededEnergy -= distributorEnergy;
           i++;
         }
-
+      distributor.setChangeProducer(false);
       }
     }
   }

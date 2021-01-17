@@ -95,8 +95,8 @@ public final class Action {
         DistributorsActions.setProducerMonthlyStat(producers, i);
 
       }
-//
-//      System.out.println();
+
+     // System.out.println();
 //      System.out.println(consumers);
 //      System.out.println(distributors);
 //      System.out.println(producers);

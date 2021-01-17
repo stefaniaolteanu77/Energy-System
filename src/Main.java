@@ -23,8 +23,8 @@ public final class Main {
      */
     public static void main(final String[] args) throws Exception {
 
-        //ParsingFactory parsing = new ParsingFactory(args[0], args[1]);
-        ParsingFactory parsing = new ParsingFactory("checker/resources/in/complex_5.json", "checker/resources/out/complex_5.json");
+        ParsingFactory parsing = new ParsingFactory(args[0], args[1]);
+        //ParsingFactory parsing = new ParsingFactory("checker/resources/in/complex_5.json", "checker/resources/out/complex_5.json");
         InputLoader inputLoader = (InputLoader) parsing.getInputOutput("INPUT");
 
         Input input = inputLoader.readInput();
