@@ -3,18 +3,13 @@ package action;
 import input.ConsumerData;
 import input.DistributorData;
 import input.ProducerData;
-import observer.EnergyChange;
 import output.Constants;
 import output.ContractData;
-import output.MonthlyStats;
 import strategies.ProducerStrategy;
 import strategies.StrategyFactory;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public final class DistributorsActions {
   private DistributorsActions() {
@@ -23,17 +18,20 @@ public final class DistributorsActions {
 
   /**
    * Calculate profit for all distributors
+   *
    * @param distributors
    */
   public static void calculateProfit(final List<DistributorData> distributors) {
     for (DistributorData distributor : distributors) {
-      distributor.setProfit((int) Math.round(Math.floor(Constants.PROFIT_CONSTANT
-              * distributor.getProductionCost())));
+      distributor.setProfit(
+          (int)
+              Math.round(Math.floor(Constants.PROFIT_CONSTANT * distributor.getProductionCost())));
     }
   }
 
   /**
    * Calculate the price of the contract for all distributors
+   *
    * @param distributors
    */
   public static void calculateContractPrice(final List<DistributorData> distributors) {
@@ -60,6 +58,7 @@ public final class DistributorsActions {
 
   /**
    * Calculate the expenses for all distributors
+   *
    * @param distributors
    */
   public static void calculateExpenses(final List<DistributorData> distributors) {
@@ -72,11 +71,12 @@ public final class DistributorsActions {
 
   /**
    * Calculate the budget for all distributors
+   *
    * @param distributors
    * @param consumers
    */
-  public static void calculateBudget(final List<DistributorData> distributors,
-                                     final List<ConsumerData> consumers) {
+  public static void calculateBudget(
+      final List<DistributorData> distributors, final List<ConsumerData> consumers) {
     for (DistributorData distributor : distributors) {
       // the distributor has no contracts
       if (distributor.getContracts().size() == 0) {
@@ -103,13 +103,14 @@ public final class DistributorsActions {
   }
 
   /**
-   * If a consumer finished his contract remove his contract and
-   * remove the consumer from the contract list of his distributor
+   * If a consumer finished his contract remove his contract and remove the consumer from the
+   * contract list of his distributor
+   *
    * @param distributors
    * @param consumers
    */
-  public static void removeFinishedContracts(final List<DistributorData> distributors,
-                                             final List<ConsumerData> consumers) {
+  public static void removeFinishedContracts(
+      final List<DistributorData> distributors, final List<ConsumerData> consumers) {
     for (DistributorData distributor : distributors) {
       ArrayList<ContractData> contractsToRemove = new ArrayList<>();
       for (ContractData contract : distributor.getContracts()) {
@@ -127,13 +128,13 @@ public final class DistributorsActions {
   }
 
   /**
-   * Remove all the contracts of bankrupt consumers from a distributor's
-   * contract list
+   * Remove all the contracts of bankrupt consumers from a distributor's contract list
+   *
    * @param distributors
    * @param consumers
    */
-  public static void removeBankruptContracts(final List<DistributorData> distributors,
-                                             final List<ConsumerData> consumers) {
+  public static void removeBankruptContracts(
+      final List<DistributorData> distributors, final List<ConsumerData> consumers) {
     for (DistributorData distributor : distributors) {
       ArrayList<ContractData> contractsToRemove = new ArrayList<>();
       for (ContractData contract : distributor.getContracts()) {
@@ -149,11 +150,12 @@ public final class DistributorsActions {
 
   /**
    * Remove all bankrupt distributors
+   *
    * @param distributors
    * @param distributorsToRemove
    */
-  public static void removeBankruptDistributors(final List<DistributorData> distributors,
-                                                final List<DistributorData> distributorsToRemove) {
+  public static void removeBankruptDistributors(
+      final List<DistributorData> distributors, final List<DistributorData> distributorsToRemove) {
     for (DistributorData distributor : distributors) {
       if (distributor.isBankrupt()) {
         distributorsToRemove.add(distributor);
@@ -164,11 +166,12 @@ public final class DistributorsActions {
 
   /**
    * For all bankrupt distributors remove all their contracts
+   *
    * @param distributors
    * @param consumers
    */
-  public static void removeContractsOfBankruptDistributors(final List<DistributorData> distributors,
-                                                           final List<ConsumerData> consumers) {
+  public static void removeContractsOfBankruptDistributors(
+      final List<DistributorData> distributors, final List<ConsumerData> consumers) {
     for (DistributorData distributor : distributors) {
       if (!distributor.getContracts().isEmpty()) {
         for (ContractData contractData : distributor.getContracts()) {
@@ -183,52 +186,65 @@ public final class DistributorsActions {
     }
   }
 
-  public static void chooseProducers(final List<DistributorData> distributors,
-                                     final List<ProducerData> producers,
-                                     boolean firstTurn) {
+  /**
+   * Choose producers in the initial round
+   * @param distributors list of distributors
+   * @param producers list of producers
+   * @param firstTurn boolean to know it is the first turn
+   */
+  public static void chooseProducers(
+      final List<DistributorData> distributors,
+      final List<ProducerData> producers,
+      boolean firstTurn) {
     StrategyFactory factory = StrategyFactory.getInstance();
     for (DistributorData distributor : distributors) {
-        if (firstTurn) {
+      if (firstTurn) {
 
-          ProducerStrategy strategy = factory.getStrategy(distributor.getProducerStrategy());
-          List<ProducerData> sortedProducers = strategy.chooseProducers(producers);
+        ProducerStrategy strategy = factory.getStrategy(distributor.getProducerStrategy());
+        List<ProducerData> sortedProducers = strategy.chooseProducers(producers);
 
-          int i = 0;
-          List<Integer> producersOfDistributors = distributor.getProducers();
-          int neededEnergy = distributor.getEnergyNeededKW();
+        int i = 0;
+        List<Integer> producersOfDistributors = distributor.getProducers();
+        int neededEnergy = distributor.getEnergyNeededKW();
 
-          while (neededEnergy > 0) {
-            int distributorEnergy = sortedProducers.get(i).getEnergyPerDistributor();
+        while (neededEnergy > 0) {
+          int distributorEnergy = sortedProducers.get(i).getEnergyPerDistributor();
 
-            ProducerData producer = sortedProducers.get(i);
+          ProducerData producer = sortedProducers.get(i);
 
-            if (producer.getMaxDistributors() == producer.getDistributors().size()) {
-              i++;
-              continue;
-            }
-
-            producersOfDistributors.add(producer.getId());
-            distributor.setProducers(producersOfDistributors);
-
-            List<Integer> distributorsOfProducer = producer.getDistributors();
-            distributorsOfProducer.add(distributor.getId());
-            producer.setDistributors(distributorsOfProducer);
-
-            neededEnergy -= distributorEnergy;
+          if (producer.getMaxDistributors() == producer.getDistributors().size()) {
             i++;
+            continue;
           }
+
+          producersOfDistributors.add(producer.getId());
+          distributor.setProducers(producersOfDistributors);
+
+          List<Integer> distributorsOfProducer = producer.getDistributors();
+          distributorsOfProducer.add(distributor.getId());
+          producer.setDistributors(distributorsOfProducer);
+
+          neededEnergy -= distributorEnergy;
+          i++;
         }
       }
+    }
   }
 
-  public static void chooseProducers(final List<DistributorData> distributors,
-                                     final List<ProducerData> producers) {
+  /**
+   * Choose distributors for rounds that aren't the initial
+   * round
+   * @param distributors list of distributors
+   * @param producers list of producers
+   */
+  public static void chooseProducers(
+      final List<DistributorData> distributors, final List<ProducerData> producers) {
     StrategyFactory factory = StrategyFactory.getInstance();
     for (DistributorData distributor : distributors) {
       if (distributor.isChangeProducer()) {
 
         List<Integer> producersOfDistributors = distributor.getProducers();
-        for(Integer producerOfDistributor : producersOfDistributors) {
+        for (Integer producerOfDistributor : producersOfDistributors) {
           for (ProducerData producer : producers) {
             if (producer.getId() == producerOfDistributor) {
               producer.getDistributors().remove(Integer.valueOf(distributor.getId()));
@@ -258,13 +274,19 @@ public final class DistributorsActions {
           neededEnergy -= distributorEnergy;
           i++;
         }
-      distributor.setChangeProducer(false);
+        distributor.setChangeProducer(false);
       }
     }
   }
 
-  public static void calculateProductionCost(final List<DistributorData> distributors,
-                                             final List<ProducerData> producers) {
+  /**
+   * calculate production cost based on the producers
+   * of the distributor
+   * @param distributors list of distributors
+   * @param producers list of producers
+   */
+  public static void calculateProductionCost(
+      final List<DistributorData> distributors, final List<ProducerData> producers) {
     for (DistributorData distributor : distributors) {
       int cost = 0;
       for (Integer contractWithProducer : distributor.getProducers()) {

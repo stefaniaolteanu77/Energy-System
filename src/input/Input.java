@@ -11,10 +11,12 @@ public final class Input {
   private final List<ProducerData> producers;
   private final List<UpdateData> monthlyChanges;
 
-  public Input(int numberOfTurns, List<ConsumerData> consumers,
-               List<DistributorData> distributors,
-               List<ProducerData> producers,
-               List<UpdateData> monthlyChanges) {
+  public Input(
+      int numberOfTurns,
+      List<ConsumerData> consumers,
+      List<DistributorData> distributors,
+      List<ProducerData> producers,
+      List<UpdateData> monthlyChanges) {
     this.numberOfTurns = numberOfTurns;
     this.consumers = consumers;
     this.distributors = distributors;
@@ -44,12 +46,17 @@ public final class Input {
 
   @Override
   public String toString() {
-    return "Input{" +
-            "numberOfTurns=" + numberOfTurns +
-            ", consumers=" + consumers +
-            ", distributors=" + distributors +
-            ", producers=" + producers +
-            ", monthlyChanges=" + monthlyChanges +
-            '}';
+    return "Input{"
+        + "numberOfTurns="
+        + numberOfTurns
+        + ", consumers="
+        + consumers
+        + ", distributors="
+        + distributors
+        + ", producers="
+        + producers
+        + ", monthlyChanges="
+        + monthlyChanges
+        + '}';
   }
 }

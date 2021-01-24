@@ -17,14 +17,8 @@ public final class DistributorChanges {
     return infrastructureCost;
   }
 
-
   @Override
   public String toString() {
-    return "CostChangeInputData{"
-        + "id="
-        + id
-        + ", infrastructureCost="
-        + infrastructureCost
-        + '}';
+    return "CostChangeInputData{" + "id=" + id + ", infrastructureCost=" + infrastructureCost + '}';
   }
 }

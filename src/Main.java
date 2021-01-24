@@ -8,35 +8,40 @@ import output.Writer;
 
 import java.util.List;
 
-/**
- * Entry point to the simulation
- */
+/** Entry point to the simulation */
 public final class Main {
 
-    private Main() { }
+  private Main() {
 
-    /**
-     * Main function which reads the input file and starts simulation
-     *
-     * @param args input and output files
-     * @throws Exception might error when reading/writing/opening files, parsing JSON
-     */
-    public static void main(final String[] args) throws Exception {
+  }
 
-        ParsingFactory parsing = new ParsingFactory(args[0], args[1]);
-        //ParsingFactory parsing = new ParsingFactory("checker/resources/in/basic_10.json", "checker/resources/out/basic_10.json");
-        InputLoader inputLoader = (InputLoader) parsing.getInputOutput("INPUT");
+  /**
+   * Main function which reads the input file and starts simulation
+   *
+   * @param args input and output files
+   * @throws Exception might error when reading/writing/opening files, parsing JSON
+   */
+  public static void main(final String[] args) throws Exception {
 
-        Input input = inputLoader.readInput();
-        Action action = new Action(input.getConsumers(),
-                input.getDistributors(), input.getProducers(), input.getMonthlyChanges());
-        action.executeTurns(input.getNumberOfTurns());
+    ParsingFactory parsing = new ParsingFactory(args[0], args[1]);
+    // ParsingFactory parsing = new ParsingFactory("checker/resources/in/basic_10.json",
+    // "checker/resources/out/basic_10.json");
+    InputLoader inputLoader = (InputLoader) parsing.getInputOutput("INPUT");
 
-        List<ConsumerData> outputConsumers = action.getOutputConsumers();
+    Input input = inputLoader.readInput();
+    Action action =
+        new Action(
+            input.getConsumers(),
+            input.getDistributors(),
+            input.getProducers(),
+            input.getMonthlyChanges());
+    action.executeTurns(input.getNumberOfTurns());
 
-        List<DistributorData> outputDistributors = action.getOutputDistributors();
+    List<ConsumerData> outputConsumers = action.getOutputConsumers();
 
-        Writer writer = (Writer) parsing.getInputOutput("OUTPUT");
-        writer.writeFile(outputConsumers, outputDistributors, input.getProducers());
-    }
+    List<DistributorData> outputDistributors = action.getOutputDistributors();
+
+    Writer writer = (Writer) parsing.getInputOutput("OUTPUT");
+    writer.writeFile(outputConsumers, outputDistributors, input.getProducers());
+  }
 }

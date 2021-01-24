@@ -15,13 +15,13 @@ public final class ConsumersActions {
   }
 
   /**
-   * When the month passes updates the contracts of the distributors
-   * and consumers
+   * When the month passes updates the contracts of the distributors and consumers
+   *
    * @param consumers
    * @param distributors
    */
-  public static void monthPass(final List<ConsumerData> consumers,
-                               final List<DistributorData> distributors) {
+  public static void monthPass(
+      final List<ConsumerData> consumers, final List<DistributorData> distributors) {
     for (ConsumerData consumer : consumers) {
       if (consumer.getContract() != null) {
         // the contract is finished
@@ -50,11 +50,12 @@ public final class ConsumersActions {
 
   /**
    * The consumers choose the contract of the distributors with lowest price
+   *
    * @param consumers
    * @param distributors
    */
-  public static void chooseDistributor(final List<ConsumerData> consumers,
-                                       final List<DistributorData> distributors) {
+  public static void chooseDistributor(
+      final List<ConsumerData> consumers, final List<DistributorData> distributors) {
     for (ConsumerData consumer : consumers) {
       if (consumer.getContract() == null) {
         // get the distributor with the lowest contract
@@ -78,6 +79,7 @@ public final class ConsumersActions {
 
   /**
    * Calculate budget for all consumers
+   *
    * @param consumers
    */
   public static void calculateBudget(final List<ConsumerData> consumers) {
@@ -91,7 +93,7 @@ public final class ConsumersActions {
           if (consumer.getBudget() + consumer.getMonthlyIncome() < owedValue) {
             consumer.setBudget(consumer.getBudget() + consumer.getMonthlyIncome());
             consumer.setBankrupt(true);
-          // the consumer pays his owed value
+            // the consumer pays his owed value
           } else {
             consumer.setBudget(consumer.getBudget() + consumer.getMonthlyIncome() - owedValue);
             consumer.setOwesDistributor(false);
@@ -114,13 +116,13 @@ public final class ConsumersActions {
   }
 
   /**
-   * Remove all bankrupt consumers and add them to a list of bankrupts
-   * to preserve their information
+   * Remove all bankrupt consumers and add them to a list of bankrupts to preserve their information
+   *
    * @param consumers
    * @param consumersToRemove
    */
-  public static void removeBankruptConsumers(final List<ConsumerData> consumers,
-                                             final List<ConsumerData> consumersToRemove) {
+  public static void removeBankruptConsumers(
+      final List<ConsumerData> consumers, final List<ConsumerData> consumersToRemove) {
     for (ConsumerData consumer : consumers) {
       if (consumer.isBankrupt()) {
         consumersToRemove.add(consumer);

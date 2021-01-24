@@ -22,8 +22,8 @@ public final class Constants {
   public static final String INF_COST = "infrastructureCost";
   public static final String ENERGY_NEEDED = "energyNeededKW";
   public static final String PRODUCER_STRATEGY = "producerStrategy";
-  public static final String PRODUCERS ="producers";
-  public static final String ENERGY_PRODUCERS ="energyProducers";
+  public static final String PRODUCERS = "producers";
+  public static final String ENERGY_PRODUCERS = "energyProducers";
   public static final String ENERGY_TYPE = "energyType";
   public static final String MAX_DIST = "maxDistributors";
   public static final String PRICE_KW = "priceKW";

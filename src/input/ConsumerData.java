@@ -16,8 +16,7 @@ public final class ConsumerData implements Entity {
   @JsonIgnore private int owedPrice;
   @JsonIgnore private ContractData contract;
 
-  public ConsumerData(final int id, final int budget,
-                      final int monthlyIncome) {
+  public ConsumerData(final int id, final int budget, final int monthlyIncome) {
     this.id = id;
     this.budget = budget;
     this.monthlyIncome = monthlyIncome;
@@ -64,10 +63,7 @@ public final class ConsumerData implements Entity {
     this.contract = contract;
   }
 
-  /**
-   *
-   * @return whether the consumer owes the distributor or not
-   */
+  /** @return whether the consumer owes the distributor or not */
   public boolean owesDistributor() {
     return owesDistributor;
   }

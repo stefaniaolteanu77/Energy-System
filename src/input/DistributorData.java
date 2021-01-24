@@ -11,8 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@JsonPropertyOrder({"id", "energyNeededKW", "contractPrice", "budget",
-        "producerStrategy", "isBankrupt", "contracts"})
+@JsonPropertyOrder({
+  "id",
+  "energyNeededKW",
+  "contractPrice",
+  "budget",
+  "producerStrategy",
+  "isBankrupt",
+  "contracts"
+})
 public final class DistributorData implements Entity, Change {
   private int id;
   @JsonIgnore private int contractLength;
@@ -20,7 +27,6 @@ public final class DistributorData implements Entity, Change {
   @JsonIgnore private int infrastructureCost;
   private int energyNeededKW;
   private String producerStrategy;
-
 
   private boolean isBankrupt;
   @JsonIgnore private boolean changeProducer;
@@ -31,7 +37,13 @@ public final class DistributorData implements Entity, Change {
   private List<ContractData> contracts;
   @JsonIgnore private List<Integer> producers;
 
-  public DistributorData(int id, int contractLength, int budget, int infrastructureCost, int energyNeededKW, String producerStrategy) {
+  public DistributorData(
+      int id,
+      int contractLength,
+      int budget,
+      int infrastructureCost,
+      int energyNeededKW,
+      String producerStrategy) {
     this.id = id;
     this.contractLength = contractLength;
     this.budget = budget;
@@ -140,7 +152,6 @@ public final class DistributorData implements Entity, Change {
     this.expensesPrice = expensesPrice;
   }
 
-
   public boolean isChangeProducer() {
     return changeProducer;
   }
@@ -159,32 +170,47 @@ public final class DistributorData implements Entity, Change {
 
   @Override
   public String toString() {
-    return "DistributorData{" +
-            "id=" + id +
-            ", contractLength=" + contractLength +
-            ", budget=" + budget +
-            ", infrastructureCost=" + infrastructureCost +
-            ", energyNeededKW=" + energyNeededKW +
-            ", producerStrategy='" + producerStrategy + '\'' +
-            ", isBankrupt=" + isBankrupt +
-            ", changeProducer=" + changeProducer +
-            ", productionCost=" + productionCost +
-            ", profit=" + profit +
-            ", contractPrice=" + contractPrice +
-            ", expensesPrice=" + expensesPrice +
-            ", contracts=" + contracts +
-            ", producers=" + producers +
-            '}';
+    return "DistributorData{"
+        + "id="
+        + id
+        + ", contractLength="
+        + contractLength
+        + ", budget="
+        + budget
+        + ", infrastructureCost="
+        + infrastructureCost
+        + ", energyNeededKW="
+        + energyNeededKW
+        + ", producerStrategy='"
+        + producerStrategy
+        + '\''
+        + ", isBankrupt="
+        + isBankrupt
+        + ", changeProducer="
+        + changeProducer
+        + ", productionCost="
+        + productionCost
+        + ", profit="
+        + profit
+        + ", contractPrice="
+        + contractPrice
+        + ", expensesPrice="
+        + expensesPrice
+        + ", contracts="
+        + contracts
+        + ", producers="
+        + producers
+        + '}';
   }
 
   @Override
-  public void update(Map<Integer, Integer> listOfEnergy, List<ProducerData> producers) {
+  public void update(Map<Integer, Integer> listOfEnergy, List<ProducerData> inputProducers) {
     for (Map.Entry<Integer, Integer> entry : listOfEnergy.entrySet()) {
-      for (Integer producerId : this.producers) {
+      for (Integer producerId : producers) {
         if (entry.getKey() == producerId) {
-          for (ProducerData producer : producers) {
-            if (producerId == producer.getId() &&
-                    entry.getValue() != producer.getEnergyPerDistributor()) {
+          for (ProducerData producer : inputProducers) {
+            if (producerId == producer.getId()
+                && entry.getValue() != producer.getEnergyPerDistributor()) {
               changeProducer = true;
               break;
             }
@@ -193,5 +219,4 @@ public final class DistributorData implements Entity, Change {
       }
     }
   }
-
 }

@@ -3,12 +3,13 @@ package action;
 import input.ConsumerData;
 import input.DistributorData;
 import input.ProducerData;
-import updates.DistributorChanges;
-import updates.UpdateData;
 import updates.MonthlyUpdate;
+import updates.UpdateData;
 
-import javax.sound.midi.Soundbank;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public final class Action {
@@ -19,9 +20,11 @@ public final class Action {
   private final List<ConsumerData> bankruptConsumers;
   private final List<DistributorData> bankruptDistributors;
 
-  public Action(final List<ConsumerData> consumers,
-                final List<DistributorData> distributors,
-                final List<ProducerData> producers, final List<UpdateData> updates) {
+  public Action(
+      final List<ConsumerData> consumers,
+      final List<DistributorData> distributors,
+      final List<ProducerData> producers,
+      final List<UpdateData> updates) {
     this.consumers = consumers;
     this.distributors = distributors;
     this.producers = producers;
@@ -31,8 +34,9 @@ public final class Action {
   }
 
   /**
-   * This is the method that calls all the actions the distributors and consumers
-   * do each turn in the right order
+   * This is the method that calls all the actions the distributors and consumers do each turn in
+   * the right order
+   *
    * @param numberOfTurns the game's number of turns
    */
   public void executeTurns(final int numberOfTurns) {
@@ -40,8 +44,8 @@ public final class Action {
       // for the rounds of the game from 1 to numberOfTurns which have updates
       if (i != 0) {
         MonthlyUpdate.addNewConsumers(consumers, updates.get(i - 1).getNewConsumers());
-        MonthlyUpdate.changeCostDistributor(distributors,
-                updates.get(i - 1).getUpdatedDistributors());
+        MonthlyUpdate.changeCostDistributor(
+            distributors, updates.get(i - 1).getUpdatedDistributors());
       }
 
       if (i == 0) {
@@ -68,8 +72,7 @@ public final class Action {
       Map<Integer, Integer> listOfChanges = ProducersActions.setListOfChanges(producers);
 
       if (i != 0) {
-        MonthlyUpdate.changeEnergyProducer(producers,
-                updates.get(i - 1).getUpdatedProducers());
+        MonthlyUpdate.changeEnergyProducer(producers, updates.get(i - 1).getUpdatedProducers());
       }
 
       DistributorsActions.removeBankruptContracts(distributors, consumers);
@@ -80,19 +83,18 @@ public final class Action {
 
       ConsumersActions.removeBankruptConsumers(consumers, bankruptConsumers);
 
-
       if (i != 0) {
         ProducersActions.updateProducers(distributors, producers, listOfChanges);
         DistributorsActions.chooseProducers(distributors, producers);
         DistributorsActions.calculateProductionCost(distributors, producers);
         ProducersActions.setProducerMonthlyStat(producers, i);
-
       }
     }
   }
 
   /**
    * Combines the consumers still in the game and the bankrupt ones and sorts them by Id
+   *
    * @return list of Consumers needed at output
    */
   public List<ConsumerData> getOutputConsumers() {
@@ -108,6 +110,7 @@ public final class Action {
 
   /**
    * Combines the distributors still in the game and the bankrupt ones and sorts them by Id
+   *
    * @return list of Distributors needed at output
    */
   public List<DistributorData> getOutputDistributors() {

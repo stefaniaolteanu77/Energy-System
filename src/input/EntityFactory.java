@@ -11,6 +11,7 @@ public final class EntityFactory {
 
   /**
    * Singleton instantiation
+   *
    * @return an object of this class
    */
   public static EntityFactory getInstance() {
@@ -22,9 +23,9 @@ public final class EntityFactory {
 
   /**
    * Factory method
+   *
    * @param entityType
-   * @return an array list of entities based on the type given
-   * as parameters
+   * @return an array list of entities based on the type given as parameters
    */
   public ArrayList<? extends Entity> getEntity(final String entityType) {
     if (entityType == null) {
@@ -32,13 +33,11 @@ public final class EntityFactory {
     }
     if (entityType.equalsIgnoreCase("CONSUMERS")) {
       return new ArrayList<ConsumerData>();
-    }
-    else if (entityType.equalsIgnoreCase("DISTRIBUTORS")) {
+    } else if (entityType.equalsIgnoreCase("DISTRIBUTORS")) {
       return new ArrayList<DistributorData>();
-    }
-    else if (entityType.equalsIgnoreCase("PRODUCERS")) {
+    } else if (entityType.equalsIgnoreCase("PRODUCERS")) {
       return new ArrayList<ProducerData>();
-  }
+    }
     return null;
   }
 }

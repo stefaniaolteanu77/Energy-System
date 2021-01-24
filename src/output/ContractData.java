@@ -3,7 +3,7 @@ package output;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@JsonPropertyOrder({ "id", "price", "remainedContractMonths"})
+@JsonPropertyOrder({"id", "price", "remainedContractMonths"})
 public final class ContractData {
   private int id;
   private int price;
@@ -42,10 +42,13 @@ public final class ContractData {
 
   @Override
   public String toString() {
-    return "ContractData{" +
-            "id=" + id +
-            ", price=" + price +
-            ", remainedContractMonths=" + remainedContractMonths +
-            '}';
+    return "ContractData{"
+        + "id="
+        + id
+        + ", price="
+        + price
+        + ", remainedContractMonths="
+        + remainedContractMonths
+        + '}';
   }
 }

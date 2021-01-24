@@ -24,8 +24,9 @@ public final class InputLoader implements Parsing {
 
   /**
    * Reads from input file
-   * @return an input which contains the number of turns, the consumers, the distributors
-   * and list of monthly updates
+   *
+   * @return an input which contains the number of turns, the consumers, the distributors and list
+   *     of monthly updates
    */
   public Input readInput() {
     JSONParser jsonParser = new JSONParser();
@@ -36,8 +37,7 @@ public final class InputLoader implements Parsing {
     @SuppressWarnings("unchecked")
     List<DistributorData> distributors =
         (List<DistributorData>) entityFactory.getEntity("DISTRIBUTORS");
-    List<ProducerData> producers =
-            (List<ProducerData>) entityFactory.getEntity("PRODUCERS");
+    List<ProducerData> producers = (List<ProducerData>) entityFactory.getEntity("PRODUCERS");
     List<UpdateData> monthlyChanges = new ArrayList<>();
 
     try {
@@ -72,10 +72,8 @@ public final class InputLoader implements Parsing {
                   ((Long) ((JSONObject) jsonDistributor).get(Constants.INITIAL_BUDGET)).intValue(),
                   ((Long) ((JSONObject) jsonDistributor).get(Constants.INITIAL_INF_COST))
                       .intValue(),
-                  ((Long) ((JSONObject) jsonDistributor).get(Constants.ENERGY_NEEDED))
-                      .intValue(),
-                      (String)((JSONObject) jsonDistributor).get(Constants.PRODUCER_STRATEGY)));
-
+                  ((Long) ((JSONObject) jsonDistributor).get(Constants.ENERGY_NEEDED)).intValue(),
+                  (String) ((JSONObject) jsonDistributor).get(Constants.PRODUCER_STRATEGY)));
         }
       } else {
         System.out.println("THERE ARE NO DISTRIBUTORS");
@@ -84,14 +82,12 @@ public final class InputLoader implements Parsing {
       if (jsonProducers != null) {
         for (Object jsonProducer : jsonProducers) {
           producers.add(
-                  new ProducerData(
-                          ((Long) ((JSONObject) jsonProducer).get(Constants.ID)).intValue(),
-                          (String) ((JSONObject) jsonProducer).get(Constants.ENERGY_TYPE),
-                          ((Long) ((JSONObject) jsonProducer).get(Constants.MAX_DIST)).intValue(),
-                          ((Number) ((JSONObject) jsonProducer).get(Constants.PRICE_KW))
-                                  .doubleValue(),
-                          ((Long) ((JSONObject) jsonProducer).get(Constants.ENERGY_PER_DIST))
-                                  .intValue()));
+              new ProducerData(
+                  ((Long) ((JSONObject) jsonProducer).get(Constants.ID)).intValue(),
+                  (String) ((JSONObject) jsonProducer).get(Constants.ENERGY_TYPE),
+                  ((Long) ((JSONObject) jsonProducer).get(Constants.MAX_DIST)).intValue(),
+                  ((Number) ((JSONObject) jsonProducer).get(Constants.PRICE_KW)).doubleValue(),
+                  ((Long) ((JSONObject) jsonProducer).get(Constants.ENERGY_PER_DIST)).intValue()));
         }
       } else {
         System.out.println("THERE ARE NO PRODUCERS");
@@ -109,7 +105,7 @@ public final class InputLoader implements Parsing {
           JSONArray jsonUpdatedDistributors =
               (JSONArray) ((JSONObject) jsonUpdate).get(Constants.DIST_CHANGES);
           JSONArray jsonUpdatedProducers =
-                  (JSONArray) ((JSONObject) jsonUpdate).get(Constants.PROD_CHANGES);
+              (JSONArray) ((JSONObject) jsonUpdate).get(Constants.PROD_CHANGES);
           if (jsonNewConsumers != null) {
             for (Object jsonNewConsumer : jsonNewConsumers) {
               newConsumers.add(
@@ -133,10 +129,10 @@ public final class InputLoader implements Parsing {
           if (jsonUpdatedProducers != null) {
             for (Object jsonUpdatedProducer : jsonUpdatedProducers) {
               updatedProducers.add(
-                      new ProducerChanges(
-                              ((Long) ((JSONObject) jsonUpdatedProducer).get(Constants.ID)).intValue(),
-                              ((Long) ((JSONObject) jsonUpdatedProducer).get(Constants.ENERGY_PER_DIST))
-                                      .intValue()));
+                  new ProducerChanges(
+                      ((Long) ((JSONObject) jsonUpdatedProducer).get(Constants.ID)).intValue(),
+                      ((Long) ((JSONObject) jsonUpdatedProducer).get(Constants.ENERGY_PER_DIST))
+                          .intValue()));
             }
           }
           monthlyChanges.add(new UpdateData(newConsumers, updatedDistributors, updatedProducers));

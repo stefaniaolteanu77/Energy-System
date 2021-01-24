@@ -1,8 +1,6 @@
 package updates;
 
 import input.ConsumerData;
-import updates.DistributorChanges;
-import updates.ProducerChanges;
 
 import java.util.List;
 
@@ -11,7 +9,10 @@ public final class UpdateData {
   private List<DistributorChanges> updatedDistributors;
   private List<ProducerChanges> updatedProducers;
 
-  public UpdateData(List<ConsumerData> newConsumers, List<DistributorChanges> updatedDistributors, List<ProducerChanges> updatedProducers) {
+  public UpdateData(
+      List<ConsumerData> newConsumers,
+      List<DistributorChanges> updatedDistributors,
+      List<ProducerChanges> updatedProducers) {
     this.newConsumers = newConsumers;
     this.updatedDistributors = updatedDistributors;
     this.updatedProducers = updatedProducers;
@@ -43,10 +44,13 @@ public final class UpdateData {
 
   @Override
   public String toString() {
-    return "UpdateData{" +
-            "newConsumers=" + newConsumers +
-            ", updatedDistributors=" + updatedDistributors +
-            ", updatedProducers=" + updatedProducers +
-            '}';
+    return "UpdateData{"
+        + "newConsumers="
+        + newConsumers
+        + ", updatedDistributors="
+        + updatedDistributors
+        + ", updatedProducers="
+        + updatedProducers
+        + '}';
   }
 }
