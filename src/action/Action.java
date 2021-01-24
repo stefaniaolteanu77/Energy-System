@@ -49,11 +49,6 @@ public final class Action {
         DistributorsActions.calculateProductionCost(distributors, producers);
       }
 
-//      System.out.println("---------- "+ i + " ----------");
-//      System.out.println(consumers);
-//      System.out.println(distributors);
-//      System.out.println(producers);
-
       DistributorsActions.calculateProfit(distributors);
 
       DistributorsActions.calculateContractPrice(distributors);
@@ -70,7 +65,7 @@ public final class Action {
 
       DistributorsActions.calculateBudget(distributors, consumers);
 
-      Map<Integer, Integer> listOfChanges = DistributorsActions.setListOfChanges(producers);
+      Map<Integer, Integer> listOfChanges = ProducersActions.setListOfChanges(producers);
 
       if (i != 0) {
         MonthlyUpdate.changeEnergyProducer(producers,
@@ -86,21 +81,13 @@ public final class Action {
       ConsumersActions.removeBankruptConsumers(consumers, bankruptConsumers);
 
 
-
-
       if (i != 0) {
-        DistributorsActions.updateProducers(distributors, producers, listOfChanges);
+        ProducersActions.updateProducers(distributors, producers, listOfChanges);
         DistributorsActions.chooseProducers(distributors, producers);
         DistributorsActions.calculateProductionCost(distributors, producers);
-        DistributorsActions.setProducerMonthlyStat(producers, i);
+        ProducersActions.setProducerMonthlyStat(producers, i);
 
       }
-
-     // System.out.println();
-//      System.out.println(consumers);
-//      System.out.println(distributors);
-//      System.out.println(producers);
-
     }
   }
 

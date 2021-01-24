@@ -82,16 +82,16 @@
     "energyPerDistributor" : 2300,
     "monthlyStats" : [ {
       "month" : 1,
-      "distributorsIds" : [ 0 ]
+      "distributorsIds" : [ ]
     }, {
       "month" : 2,
-      "distributorsIds" : [ 0 ]
+      "distributorsIds" : [ ]
     }, {
       "month" : 3,
-      "distributorsIds" : [ 0 ]
+      "distributorsIds" : [ ]
     }, {
       "month" : 4,
-      "distributorsIds" : [ 0 ]
+      "distributorsIds" : [ ]
     }, {
       "month" : 5,
       "distributorsIds" : [ 0 ]
@@ -107,7 +107,7 @@
     "energyPerDistributor" : 1377,
     "monthlyStats" : [ {
       "month" : 1,
-      "distributorsIds" : [ 0 ]
+      "distributorsIds" : [ ]
     }, {
       "month" : 2,
       "distributorsIds" : [ 0 ]

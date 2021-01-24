@@ -2,22 +2,20 @@
   "consumers" : [ {
     "id" : 0,
     "isBankrupt" : false,
-    "budget" : 631
+    "budget" : 650
   } ],
   "distributors" : [ {
     "id" : 0,
     "energyNeededKW" : 1956,
-    "contractCost" : 35,
-    "budget" : 109,
+    "contractCost" : 16,
+    "budget" : 146,
     "producerStrategy" : "GREEN",
     "isBankrupt" : false,
     "contracts" : [ {
       "consumerId" : 0,
-      "price" : 35,
+      "price" : 16,
       "remainedContractMonths" : 5
-    } ],
-    "productionCost" : 18,
-    "producers" : [ 0, 0, 0, 0, 0, 0, 0 ]
+    } ]
   } ],
   "energyProducers" : [ {
     "id" : 0,
@@ -26,27 +24,23 @@
     "energyType" : "COAL",
     "energyPerDistributor" : 2695,
     "monthlyStats" : [ {
-      "month" : 0,
-      "distributorsId" : [ 0, 0, 0, 0, 0, 0, 0 ]
-    }, {
       "month" : 1,
-      "distributorsId" : [ 0, 0, 0, 0, 0, 0, 0 ]
+      "distributorsIds" : [ 0 ]
     }, {
       "month" : 2,
-      "distributorsId" : [ 0, 0, 0, 0, 0, 0, 0 ]
+      "distributorsIds" : [ 0 ]
     }, {
       "month" : 3,
-      "distributorsId" : [ 0, 0, 0, 0, 0, 0, 0 ]
+      "distributorsIds" : [ 0 ]
     }, {
       "month" : 4,
-      "distributorsId" : [ 0, 0, 0, 0, 0, 0, 0 ]
+      "distributorsIds" : [ 0 ]
     }, {
       "month" : 5,
-      "distributorsId" : [ 0, 0, 0, 0, 0, 0, 0 ]
+      "distributorsIds" : [ 0 ]
     }, {
       "month" : 6,
-      "distributorsId" : [ 0, 0, 0, 0, 0, 0, 0 ]
-    } ],
-    "distributors" : [ 0, 0, 0, 0, 0, 0, 0 ]
+      "distributorsIds" : [ 0 ]
+    } ]
   } ]
 }
